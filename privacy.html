@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Datenschutzerklärung – OMD - One Minute Diary</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #0c1f44;
+      --muted: #9ca3af;
+      --text: #e5e7eb;
+      --brand: #007bff;
+      --radius: 14px;
+      --shadow: 0 20px 45px rgba(0,0,0,.35);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 24px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; position: sticky; top: 0; backdrop-filter: blur(8px);
+    }
+    .brand h1 { font-size: 22px; margin: 0; }
+
+    h2 { margin-top: 1.8rem; color: var(--brand); }
+    p, ul { color: var(--text); }
+
+    .card { background: var(--card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 18px; }
+    footer { margin-top: 3rem; font-size: 0.9rem; color: var(--muted); text-align: center; }
+
+    .toggle {
+      display: flex; align-items: center;
+      gap: 8px; cursor: pointer;
+    }
+    .toggle input {
+      width: 40px; height: 20px; appearance: none;
+      background: #444; border-radius: 20px;
+      position: relative; outline: none; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle input:checked { background: var(--brand); }
+    .toggle input::before {
+      content: ''; width: 16px; height: 16px; background: white;
+      border-radius: 50%; position: absolute; top: 2px; left: 2px;
+      transition: transform 0.3s;
+    }
+    .toggle input:checked::before { transform: translateX(20px); }
+
+    a {
+  color: #66b2ff;
+  text-decoration: none;
+    }
+
+    a:hover {
+  color: #99ccff;
+  text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1 id="page-title"></h1>
+      </div>
+      <div class="toggle">
+        <span>DE</span>
+        <input type="checkbox" id="langToggle" />
+        <span>EN</span>
+      </div>
+    </header>
+
+    <p id="date"></p>
+
+    <section class="card">
+      <h2 id="general-title"></h2>
+      <p id="general-text"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="storage-title"></h2>
+      <ul id="storage-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2 id="sharing-title"></h2>
+      <p id="sharing-text"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="rights-title"></h2>
+      <p id="rights-text"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="changes-title"></h2>
+      <p id="changes-text"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="contact-title"></h2>
+      <p id="contact-text"></p>
+      <p>Email: <a href="mailto:contact.oneminutediary@gmail.com">contact.oneminutediary@gmail.com</a></p>
+    </section>
+
+    <footer id="footer"></footer>
+  </div>
+
+  <script>
+    const texts = {
+      de: {
+        pageTitle: "Datenschutzerklärung für OMD - One Minute Diary",
+        date: "Stand: August 2025",
+        generalTitle: "Allgemeines",
+        generalText: "Wir nehmen den Schutz deiner Daten sehr ernst. OMD - One Minute Diary ist ein eigenständiges Produkt und funktioniert vollständig offline. Es werden keine Daten an Server oder Dritte übertragen.",
+        storageTitle: "Gespeicherte Daten",
+        storageList: [
+          "Alle Inhalte (z. B. Tagebucheinträge) werden ausschließlich lokal auf deinem Gerät gespeichert.",
+          "Die Sicherheit deiner Daten hängt von deinem Gerät ab. Wir empfehlen regelmäßige Backups.",
+          "Wir haben keinerlei Zugriff auf deine Inhalte."
+        ],
+        sharingTitle: "Weitergabe an Dritte",
+        sharingText: "Es erfolgt keine Weitergabe von Daten an Dritte, keine Nutzung von Analyse-Tools, Werbung oder Tracking.",
+        rightsTitle: "Deine Rechte",
+        rightsText: "Da keine personenbezogenen Daten verarbeitet oder gespeichert werden, sind deine Inhalte vollständig unter deiner Kontrolle. Du kannst diese jederzeit exportieren oder löschen, indem du die App entfernst.",
+        changesTitle: "Änderungen dieser Erklärung",
+        changesText: "Diese Datenschutzerklärung kann angepasst werden, wenn sich die Funktionsweise der App ändert. Über wichtige Änderungen wirst du über die Support-Seite informiert.",
+        contactTitle: "Kontakt",
+        contactText: "Bei Fragen oder rechtlichen Anliegen wende dich bitte an:",
+        footer: "© 2025 OMD - One Minute Diary – Alle Rechte vorbehalten."
+      },
+      en: {
+        pageTitle: "Privacy Policy for OMD - One Minute Diary",
+        date: "Effective: August 2025",
+        generalTitle: "General",
+        generalText: "We take the protection of your data very seriously. OMD - One Minute Diary is a standalone product and works entirely offline. No data is transmitted to servers or third parties.",
+        storageTitle: "Stored Data",
+        storageList: [
+          "All content (e.g., diary entries) is stored exclusively locally on your device.",
+          "The security of your data depends on your device. We recommend regular backups.",
+          "We have no access to your content."
+        ],
+        sharingTitle: "Sharing with Third Parties",
+        sharingText: "There is no sharing of data with third parties, no use of analytics tools, advertising, or tracking.",
+        rightsTitle: "Your Rights",
+        rightsText: "Since no personal data is processed or stored, your content is fully under your control. You can export or delete it at any time by removing the app.",
+        changesTitle: "Changes to this Policy",
+        changesText: "This privacy policy may be updated if the functionality of the app changes. You will be informed of important changes via the support page.",
+        contactTitle: "Contact",
+        contactText: "If you have any questions or legal concerns, please contact:",
+        footer: "© 2025 OMD - One Minute Diary – All rights reserved."
+      }
+    };
+
+    const langToggle = document.getElementById('langToggle');
+    let currentLang = 'de';
+
+    function updateTexts() {
+      const t = texts[currentLang];
+      document.getElementById('page-title').textContent = t.pageTitle;
+      document.getElementById('date').textContent = t.date;
+      document.getElementById('general-title').textContent = t.generalTitle;
+      document.getElementById('general-text').textContent = t.generalText;
+      document.getElementById('storage-title').textContent = t.storageTitle;
+      const ul = document.getElementById('storage-list');
+      ul.innerHTML = "";
+      t.storageList.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      document.getElementById('sharing-title').textContent = t.sharingTitle;
+      document.getElementById('sharing-text').textContent = t.sharingText;
+      document.getElementById('rights-title').textContent = t.rightsTitle;
+      document.getElementById('rights-text').textContent = t.rightsText;
+      document.getElementById('changes-title').textContent = t.changesTitle;
+      document.getElementById('changes-text').textContent = t.changesText;
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('contact-text').textContent = t.contactText;
+      document.getElementById('footer').textContent = t.footer;
+    }
+
+    langToggle.addEventListener('change', () => {
+      currentLang = langToggle.checked ? 'en' : 'de';
+      updateTexts();
+    });
+
+  updateTexts();
+  </script>
+</body>
+</html>
